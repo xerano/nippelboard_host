@@ -16,21 +16,54 @@ def listen():
 
 
 def handle_command(command):
-    button = command.split(";")[0] if ";" in command else "0"
-    volume = command.split(";")[1] if len(command.split(";")) == 2 else 0
+    if len(command.split(";")) == 2:
+        button = command.split(";")[0]
+        volume = command.split(";")[1]
 
-    if int(button) > 0:
-        handle_button(button)
+        if int(button) > 0:
+            handle_button(int(button))
 
-    handle_volume(volume)
+        handle_volume(volume)
 
 
 def handle_button(button):
     print("handling button %s" % button)
+    if button == 1:
+        play_id(1)
+
+    if button == 2:
+        play_id(2)
+
+    if button == 4:
+        play_id(3)
+
+    if button == 8:
+        play_id(4)
+
+    if button == 16:
+        play_id(5)
+
+    if button == 32:
+        playlist_start()
+
+    if button == 64:
+        playlist_stop()
 
 
 def handle_volume(volume):
     print("handling volume change")
+
+
+def play_id(song_id):
+    print("Playing %s" % song_id)
+
+
+def playlist_start():
+    print("Starting playlist...")
+
+
+def playlist_stop():
+    print("Stopping playlist...")
 
 
 if __name__ == "__main__":
