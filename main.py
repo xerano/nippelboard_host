@@ -77,7 +77,13 @@ def handle_button(button):
 
 
 def handle_volume(volume):
-    print("handling volume change")
+    v = int(volume / 255 * 100)
+    if v > 100:
+        v = 100
+    if v < 0:
+        v = 0
+    media_player.audio_set_volume(v)
+    media_list_player.get_media_player().audio_set_volume(v)
 
 
 def play_id(song_id):
